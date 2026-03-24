@@ -1,0 +1,6 @@
+{
+  "name": "blockchain_credsui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sui Move package (credsui); placeholder workspace for monorepo tooling."
+}
