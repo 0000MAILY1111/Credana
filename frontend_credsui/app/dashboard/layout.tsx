@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { DashboardShell } from "./components/DashboardShell";
 
 export const metadata: Metadata = {
   title: "Dashboard",
-  description: "Tus credenciales académicas verificables en SUI.",
+  description: "Centro de control académico institucional — Credana.",
 };
 
 type DashboardLayoutProps = {
@@ -10,5 +11,5 @@ type DashboardLayoutProps = {
 };
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  return children;
+  return <DashboardShell>{children}</DashboardShell>;
 }
