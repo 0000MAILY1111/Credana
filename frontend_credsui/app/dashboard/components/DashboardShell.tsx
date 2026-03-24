@@ -7,7 +7,7 @@ type DashboardShellProps = {
 
 export function DashboardShell({ children }: DashboardShellProps) {
   return (
-    <div className="flex min-h-screen bg-[#0a0f12] text-zinc-100 antialiased">
+    <div className="flex min-h-screen bg-[#0a0b0d] text-zinc-100 antialiased">
       <DashboardSidebar />
       <div className="flex min-w-0 flex-1 flex-col">
         <DashboardTopNav />

@@ -3,17 +3,17 @@ import {
   Award,
   BookOpen,
   FileBadge2,
+  GraduationCap,
   HelpCircle,
-  LayoutDashboard,
   Settings2,
   Users,
 } from "lucide-react";
 
 const navItems = [
-  { href: "/dashboard", label: "Issuance", icon: Award },
-  { href: "/dashboard", label: "Credentials", icon: FileBadge2 },
-  { href: "/dashboard", label: "Directory", icon: Users },
-  { href: "/dashboard", label: "Settings", icon: Settings2 },
+  { href: "/dashboard/wallet", label: "Issuance", icon: Award },
+  { href: "/dashboard/wallet", label: "Credentials", icon: FileBadge2 },
+  { href: "/dashboard/wallet", label: "Directory", icon: Users },
+  { href: "/dashboard/wallet", label: "Settings", icon: Settings2 },
 ] as const;
 
 export function DashboardSidebar() {
@@ -27,10 +27,10 @@ export function DashboardSidebar() {
           Credana
         </Link>
         <div className="mt-4 flex items-center gap-2 rounded-xl border border-zinc-800/80 bg-[#161b22] px-3 py-2.5">
-          <LayoutDashboard className="h-4 w-4 text-zinc-500" aria-hidden />
+          <GraduationCap className="h-4 w-4 text-cyan-300/90" aria-hidden />
           <div className="min-w-0 flex-1">
             <p className="truncate text-xs font-medium text-zinc-300">
-              Credana
+              Network
             </p>
             <p className="mt-0.5 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wide text-zinc-500">
               <span
@@ -48,9 +48,21 @@ export function DashboardSidebar() {
           <Link
             key={label}
             href={href}
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-400 transition hover:bg-zinc-800/50 hover:text-zinc-200"
+            className={
+              label === "Credentials"
+                ? "flex items-center gap-3 rounded-lg bg-zinc-900/60 px-3 py-2.5 text-sm font-semibold text-zinc-100 ring-1 ring-zinc-800/80"
+                : "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-400 transition hover:bg-zinc-800/50 hover:text-zinc-200"
+            }
           >
-            <Icon className="h-4 w-4 shrink-0" strokeWidth={1.75} aria-hidden />
+            <Icon
+              className={
+                label === "Credentials"
+                  ? "h-4 w-4 shrink-0 text-cyan-300"
+                  : "h-4 w-4 shrink-0 text-zinc-500"
+              }
+              strokeWidth={1.75}
+              aria-hidden
+            />
             {label}
           </Link>
         ))}
