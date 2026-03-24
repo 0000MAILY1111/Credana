@@ -35,10 +35,4 @@ export const homeContent = {
       "Identidad profesional descentralizada y confiable para el futuro del trabajo.",
     ],
   },
-  cta: {
-    title: "Construye una reputación que no se puede inventar",
-    body:
-      "Únete a la siguiente generación de credenciales: transparentes, portables y bajo control del titular.",
-    button: "Comenzar",
-  },
 } as const;

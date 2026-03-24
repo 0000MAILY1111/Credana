@@ -1,5 +1,4 @@
 import {
-  CTASection,
   HeroSection,
   ProblemSection,
   SiteFooter,
@@ -18,7 +17,6 @@ export default function HomePage() {
         <HeroSection />
         <ProblemSection />
         <SolutionSection />
-        <CTASection />
       </main>
       <SiteFooter />
     </>

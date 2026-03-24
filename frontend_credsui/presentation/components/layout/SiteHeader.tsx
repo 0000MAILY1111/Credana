@@ -4,7 +4,6 @@ import { homeContent } from "@/domain/content/home";
 const nav = [
   { href: "#problema", label: "Problema" },
   { href: "#solucion", label: "Solución" },
-  { href: "#cta", label: "Empezar" },
 ] as const;
 
 export function SiteHeader() {
