@@ -1,0 +1,17 @@
+# Artefactos de compilación Sui Move
+build/
+
+# Traza del depurador Move
+.trace
+
+# Cobertura de tests Move
+.coverage*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores y temporales
+*.swp
+*.swo
+*~
