@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { homeContent } from "@/domain/content/home";
+import { homeContent } from "@/app/domain/content/home";
 
 export const defaultSiteMetadata: Metadata = {
   title: {
