@@ -1,4 +1,4 @@
-import type { VerifiableCredential } from "@/app/domain/entities/credential";
+import type { VerifiableCredential } from "../domain/entities/credential";
 
 export const mockCredentials: VerifiableCredential[] = [
   {
