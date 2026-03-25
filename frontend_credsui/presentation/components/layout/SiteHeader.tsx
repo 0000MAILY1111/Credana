@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { homeContent } from "@/domain/content/home";
+import { WalletConnectButtons } from "@/presentation/components/wallet/WalletConnectButtons";
 
 const nav = [
   { href: "#problema", label: "Problema" },
@@ -18,20 +19,23 @@ export function SiteHeader() {
             {homeContent.brand}
           </span>
         </Link>
-        <nav
-          className="flex items-center gap-1 text-sm text-zinc-400 sm:gap-6"
-          aria-label="Principal"
-        >
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-lg px-3 py-2 transition-colors hover:bg-white/5 hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="flex items-center gap-3 sm:gap-6">
+          <nav
+            className="flex items-center gap-1 text-sm text-zinc-400 sm:gap-6"
+            aria-label="Principal"
+          >
+            {nav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-lg px-3 py-2 transition-colors hover:bg-white/5 hover:text-white"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <WalletConnectButtons />
+        </div>
       </div>
     </header>
   );

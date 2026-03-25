@@ -519,4 +519,3 @@ export function WalletConnectButtons() {
 
 export { WalletConnectButtons as SuiWalletButton };
 export { WalletConnectButtons as PhantomWalletButton };
->>>>>>> Incoming (Background Agent changes)

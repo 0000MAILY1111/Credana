@@ -5,7 +5,10 @@ import { SuiClientProvider, WalletProvider, createNetworkConfig } from "@mysten/
 import { useState } from "react";
 
 const { networkConfig } = createNetworkConfig({
-  mainnet: { url: "https://fullnode.mainnet.sui.io:443" },
+  mainnet: {
+    url: "https://fullnode.mainnet.sui.io:443",
+    network: "mainnet",
+  },
 });
 
 export function Providers({ children }: { children: React.ReactNode }) {
