@@ -13,10 +13,13 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
-          className="font-semibold tracking-tight text-white"
+          className="flex items-baseline gap-2 font-semibold tracking-tight text-white"
         >
           <span className="bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
             {homeContent.brand}
+          </span>
+          <span className="hidden text-xs font-normal text-zinc-500 sm:inline">
+            · {homeContent.ecosystem}
           </span>
         </Link>
         <div className="flex items-center gap-3 sm:gap-6">

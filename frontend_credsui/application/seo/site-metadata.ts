@@ -3,8 +3,8 @@ import { homeContent } from "@/domain/content/home";
 
 export const defaultSiteMetadata: Metadata = {
   title: {
-    default: `${homeContent.brand} — Credenciales académicas verificables en SUI`,
-    template: `%s | ${homeContent.brand}`,
+    default: `${homeContent.brand} · ${homeContent.ecosystem} — Credenciales académicas verificables en SUI`,
+    template: `%s | ${homeContent.brand} · ${homeContent.ecosystem}`,
   },
   description: homeContent.tagline,
   keywords: [
@@ -16,7 +16,7 @@ export const defaultSiteMetadata: Metadata = {
     "NFT educativo",
   ],
   openGraph: {
-    title: `${homeContent.brand} — Credenciales verificables`,
+    title: `${homeContent.brand} · ${homeContent.ecosystem} — Credenciales verificables`,
     description: homeContent.tagline,
     type: "website",
     locale: "es_ES",

@@ -1,3 +1,5 @@
+import { homeContent } from "@/domain/content/home";
+
 export default function Loading() {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 px-4">
@@ -6,7 +8,9 @@ export default function Loading() {
         role="status"
         aria-label="Cargando"
       />
-      <p className="text-sm text-zinc-500">Cargando CredSUI…</p>
+      <p className="text-sm text-zinc-500">
+        Cargando {homeContent.brand} · {homeContent.ecosystem}…
+      </p>
     </div>
   );
 }

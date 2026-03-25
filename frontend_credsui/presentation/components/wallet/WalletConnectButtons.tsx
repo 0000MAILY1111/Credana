@@ -1,5 +1,6 @@
 "use client";
 
+import { homeContent } from "@/domain/content/home";
 import {
   useWallets,
   useConnectWallet,
@@ -7,6 +8,7 @@ import {
   useCurrentAccount,
 } from "@mysten/dapp-kit";
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -356,163 +358,167 @@ export function WalletConnectButtons() {
         Conectar Wallet
       </button>
 
-      {/* ── Modal ── */}
-      {open && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="wm-title"
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "16px",
-          }}
-        >
-          {/* Backdrop */}
+      {/* ── Modal (portal a body: evita errores de reconciliación con sticky/header) ── */}
+      {open &&
+        mounted &&
+        createPortal(
           <div
-            aria-hidden="true"
-            onClick={() => setOpen(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="wm-title"
             style={{
-              position: "absolute",
+              position: "fixed",
               inset: 0,
-              background: "rgba(0,0,0,0.75)",
-              backdropFilter: "blur(4px)",
-            }}
-          />
-
-          {/* Panel */}
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              maxWidth: "360px",
-              borderRadius: "20px",
-              border: "1px solid rgba(255,255,255,0.1)",
-              background: "#0c1220",
-              boxShadow: "0 25px 50px rgba(0,0,0,0.6)",
-              overflow: "hidden",
+              zIndex: 9999,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "16px",
             }}
           >
-            {/* Header */}
+            {/* Backdrop */}
+            <div
+              aria-hidden="true"
+              onClick={() => setOpen(false)}
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: "rgba(0,0,0,0.75)",
+                backdropFilter: "blur(4px)",
+              }}
+            />
+
+            {/* Panel */}
             <div
               style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: "16px 20px",
-                borderBottom: "1px solid rgba(255,255,255,0.06)",
+                position: "relative",
+                width: "100%",
+                maxWidth: "360px",
+                borderRadius: "20px",
+                border: "1px solid rgba(255,255,255,0.1)",
+                background: "#0c1220",
+                boxShadow: "0 25px 50px rgba(0,0,0,0.6)",
+                overflow: "hidden",
               }}
             >
-              <div>
-                <h2 id="wm-title" style={{ margin: 0, fontSize: "14px", fontWeight: 600, color: "#f8fafc" }}>
-                  Conectar Wallet
-                </h2>
-                <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#64748b" }}>
-                  Elegí tu billetera para continuar
-                </p>
-              </div>
-              <button
-                onClick={() => setOpen(false)}
-                aria-label="Cerrar"
+              {/* Header */}
+              <div
                 style={{
-                  width: "30px",
-                  height: "30px",
-                  borderRadius: "8px",
-                  border: "none",
-                  background: "transparent",
-                  color: "#64748b",
-                  cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  transition: "background 0.15s, color 0.15s",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#f8fafc";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.background = "transparent";
-                  (e.currentTarget as HTMLButtonElement).style.color = "#64748b";
+                  justifyContent: "space-between",
+                  padding: "16px 20px",
+                  borderBottom: "1px solid rgba(255,255,255,0.06)",
                 }}
               >
-                <IconClose />
-              </button>
-            </div>
-
-            {/* Body */}
-            <div style={{ padding: "16px", display: "flex", flexDirection: "column", gap: "6px" }}>
-
-              {/* SUI */}
-              <p style={{ margin: "0 0 6px 2px", fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "#475569" }}>
-                SUI Network
-              </p>
-              {wallets.length > 0 ? (
-                wallets.map((w) => (
-                  <WalletRow
-                    key={w.name}
-                    icon={<IconSui />}
-                    name={w.name}
-                    badge={suiBusy ? "Conectando…" : "→"}
-                    accent="#22d3ee"
-                    onClick={() => connectSui(w)}
-                    disabled={suiBusy}
-                  />
-                ))
-              ) : (
-                <WalletRow
-                  icon={<IconSui />}
-                  name="Sui Wallet"
-                  badge="Instalar →"
-                  accent="#22d3ee"
-                  onClick={() => window.open("https://chrome.google.com/webstore/detail/sui-wallet/opcgpfmipidbgpenhmajoajpbobppdil", "_blank")}
-                />
-              )}
-
-              {/* Divider */}
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", margin: "8px 0" }}>
-                <span style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.06)" }} />
-                <span style={{ fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "#334155" }}>
-                  Otras redes
-                </span>
-                <span style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.06)" }} />
+                <div>
+                  <h2 id="wm-title" style={{ margin: 0, fontSize: "14px", fontWeight: 600, color: "#f8fafc" }}>
+                    Conectar Wallet
+                  </h2>
+                  <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#64748b" }}>
+                    Elegí tu billetera para continuar
+                  </p>
+                </div>
+                <button
+                  onClick={() => setOpen(false)}
+                  aria-label="Cerrar"
+                  style={{
+                    width: "30px",
+                    height: "30px",
+                    borderRadius: "8px",
+                    border: "none",
+                    background: "transparent",
+                    color: "#64748b",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    transition: "background 0.15s, color 0.15s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.08)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#f8fafc";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLButtonElement).style.background = "transparent";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#64748b";
+                  }}
+                >
+                  <IconClose />
+                </button>
               </div>
 
-              {/* Phantom */}
-              <WalletRow
-                icon={<IconPhantom />}
-                name="Phantom"
-                badge={phantomBusy ? "Conectando…" : mounted && !phantomOk ? "Instalar →" : "→"}
-                accent="#a78bfa"
-                onClick={connectPhantom}
-                disabled={phantomBusy}
-              />
+              {/* Body */}
+              <div style={{ padding: "16px", display: "flex", flexDirection: "column", gap: "6px" }}>
 
-              {/* MetaMask */}
-              <WalletRow
-                icon={<IconMetaMask />}
-                name="MetaMask"
-                badge={mmBusy ? "Conectando…" : mounted && !mmOk ? "Instalar →" : "→"}
-                accent="#fb923c"
-                onClick={connectMM}
-                disabled={mmBusy}
-              />
-            </div>
+                {/* SUI */}
+                <p style={{ margin: "0 0 6px 2px", fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "#475569" }}>
+                  SUI Network
+                </p>
+                {wallets.length > 0 ? (
+                  wallets.map((w) => (
+                    <WalletRow
+                      key={w.name}
+                      icon={<IconSui />}
+                      name={w.name}
+                      badge={suiBusy ? "Conectando…" : "→"}
+                      accent="#22d3ee"
+                      onClick={() => connectSui(w)}
+                      disabled={suiBusy}
+                    />
+                  ))
+                ) : (
+                  <WalletRow
+                    icon={<IconSui />}
+                    name="Sui Wallet"
+                    badge="Instalar →"
+                    accent="#22d3ee"
+                    onClick={() => window.open("https://chrome.google.com/webstore/detail/sui-wallet/opcgpfmipidbgpenhmajoajpbobppdil", "_blank")}
+                  />
+                )}
 
-            {/* Footer */}
-            <div style={{ padding: "12px 20px 16px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-              <p style={{ margin: 0, textAlign: "center", fontSize: "11px", lineHeight: 1.6, color: "#475569" }}>
-                Al conectar aceptás los <span style={{ color: "#64748b" }}>términos de uso</span> de CredSUI.
-                Tu llave privada nunca sale de tu dispositivo.
-              </p>
+                {/* Divider */}
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", margin: "8px 0" }}>
+                  <span style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.06)" }} />
+                  <span style={{ fontSize: "10px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "#334155" }}>
+                    Otras redes
+                  </span>
+                  <span style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.06)" }} />
+                </div>
+
+                {/* Phantom */}
+                <WalletRow
+                  icon={<IconPhantom />}
+                  name="Phantom"
+                  badge={phantomBusy ? "Conectando…" : mounted && !phantomOk ? "Instalar →" : "→"}
+                  accent="#a78bfa"
+                  onClick={connectPhantom}
+                  disabled={phantomBusy}
+                />
+
+                {/* MetaMask */}
+                <WalletRow
+                  icon={<IconMetaMask />}
+                  name="MetaMask"
+                  badge={mmBusy ? "Conectando…" : mounted && !mmOk ? "Instalar →" : "→"}
+                  accent="#fb923c"
+                  onClick={connectMM}
+                  disabled={mmBusy}
+                />
+              </div>
+
+              {/* Footer */}
+              <div style={{ padding: "12px 20px 16px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                <p style={{ margin: 0, textAlign: "center", fontSize: "11px", lineHeight: 1.6, color: "#475569" }}>
+                  Al conectar aceptás los <span style={{ color: "#64748b" }}>términos de uso</span> de{" "}
+                {homeContent.brand} · {homeContent.ecosystem}.
+                  Tu llave privada nunca sale de tu dispositivo.
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 }

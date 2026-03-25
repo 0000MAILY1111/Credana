@@ -2,13 +2,16 @@
  * Contenido de marketing de la home — única fuente de verdad para textos.
  */
 export const homeContent = {
+  /** Producto: interfaz y credenciales en SUI. */
   brand: "CredSUI",
+  /** Proyecto / ecosistema matriz. */
+  ecosystem: "Credana",
   tagline:
     "Credenciales académicas verificables en la blockchain SUI: propiedad del estudiante, imposibles de falsificar.",
   hero: {
     headline: "Tu trayectoria académica, verificable en segundos",
     subheadline:
-      "CredSUI convierte cada insignia o logro en un activo digital único sobre SUI. Las instituciones y empresas validan habilidades reales sin fricción.",
+      "Credana impulsa CredSUI: cada insignia o logro es un activo digital único sobre SUI. Las instituciones y empresas validan habilidades reales sin fricción.",
     primaryCta: "Explorar la plataforma",
     secondaryCta: "Cómo funciona la verificación",
   },
@@ -28,7 +31,7 @@ export const homeContent = {
   solution: {
     title: "CredSUI sobre SUI",
     lead:
-      "Cada credencial es un activo digital único, propiedad del estudiante, inmutable y comprobable on-chain.",
+      "Cada credencial es un activo digital único, propiedad del estudiante, inmutable y comprobable on-chain. Credana articula la visión; CredSUI la lleva a la red SUI.",
     points: [
       "Verificación en segundos por cualquier institución o empresa.",
       "Reduce el fraude académico al anclar la emisión a la blockchain.",
