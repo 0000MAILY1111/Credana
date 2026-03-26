@@ -2,7 +2,6 @@
  * Contenido de marketing de la home — única fuente de verdad para textos.
  */
 export const homeContent = {
-  /** Producto: interfaz y credenciales en SUI. */
   brand: "CredSUI",
   /** Proyecto / ecosistema matriz. */
   ecosystem: "Credana",

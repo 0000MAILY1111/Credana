@@ -27,7 +27,7 @@ export function HeroSection() {
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
           <Link
-            href="#solucion"
+            href="/dashboard"
             className="inline-flex h-12 min-w-[200px] items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-teal-500 px-8 text-sm font-semibold text-[#030508] shadow-lg shadow-cyan-500/20 transition hover:brightness-110"
           >
             {hero.primaryCta}
